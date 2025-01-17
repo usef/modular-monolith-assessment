@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@types/dotenv": "^8.2.3",
+    "@types/uuid": "^10.0.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "uuid": "^11.0.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.7"
+  },
+  "name": "modular-monolith-assessment",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "npx ts-node src/server.ts "
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
