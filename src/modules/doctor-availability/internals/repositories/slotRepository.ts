@@ -1,8 +1,8 @@
 import Slot from "../models/slotModel";
 import createSlotDTO from "../dtos/createSlotDTO";
 import { v4 as uuid4 } from "uuid";
-import constants from "../../../constants/constants";
-import SlotDTO from "../dtos/slotDTO";
+import constants from "../../../../shared/constants/constants";
+import SlotDTO from "../../../../shared/dtos/slotDTO";
 
 class SlotRepository {
   private slots: Slot[] = [];
@@ -29,5 +29,4 @@ class SlotRepository {
   }
 }
 
-const slotRepository = new SlotRepository();
-export default slotRepository;
+export default SlotRepository;
