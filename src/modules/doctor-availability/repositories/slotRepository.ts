@@ -1,29 +1,30 @@
 import Slot from "../models/slotModel";
 import createSlotDTO from "../dtos/createSlotDTO";
-import {v4 as uuid4} from "uuid";
+import { v4 as uuid4 } from "uuid";
 import constants from "../../../constants/constants";
+import SlotDTO from "../dtos/slotDTO";
 
 class SlotRepository {
   private slots: Slot[] = [];
 
-  public getAll() {
+  public getAll(): SlotDTO[] {
     return this.slots;
   }
 
-  public add(slot: createSlotDTO) {
+  public add(slot: createSlotDTO): SlotDTO {
     const newSlot = new Slot(
-        uuid4(),
-        slot.time,
-        constants.doctorId,
-        constants.doctorName,
-        false,
-        slot.cost
+      uuid4(),
+      slot.time,
+      constants.doctorId,
+      constants.doctorName,
+      false,
+      slot.cost
     );
     this.slots.push(newSlot);
-    return newSlot
+    return newSlot as SlotDTO;
   }
 
-  public findById(id: string): Slot {
+  public findById(id: string): SlotDTO {
     return this.slots.filter((slot) => slot.id === id)[0];
   }
 }
