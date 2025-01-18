@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import SlotsService from "../services/slotsService";
-import slotDTO from "../dtos/slotDTO";
+import createSlotDTO from "../dtos/createSlotDTO";
 import { validationResult } from "express-validator";
 
 async function listSlots(req: Request, res: Response) {
@@ -14,10 +14,10 @@ async function addSlot(req: Request, res: Response) {
     console.log(errors);
     res.json({ message: "failure" });
   }
-  const slot: slotDTO = req.body;
+  const slot: createSlotDTO = req.body;
   const createdSlot = SlotsService.createSlot(slot);
 
-  res.json({ message: "sucess", slot: createdSlot });
+  res.json({ message: "success", slot: createdSlot });
 }
 
 export default { listSlots, addSlot };

@@ -5,7 +5,7 @@ export default () => {
     body("time")
       .notEmpty()
       .withMessage("time is required!")
-      .isDate({ format: "yyyy-mm-dd" }),
+      .isDate(),
     body("cost")
       .notEmpty()
       .withMessage("cost is required!")

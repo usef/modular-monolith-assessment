@@ -1,4 +1,7 @@
-import Slot from "../models/slotMode";
+import Slot from "../models/slotModel";
+import createSlotDTO from "../dtos/createSlotDTO";
+import {v4 as uuid4} from "uuid";
+import constants from "../../../constants/constants";
 
 class SlotRepository {
   private slots: Slot[] = [];
@@ -7,8 +10,17 @@ class SlotRepository {
     return this.slots;
   }
 
-  public add(slot: Slot) {
-    this.slots.push(slot);
+  public add(slot: createSlotDTO) {
+    const newSlot = new Slot(
+        uuid4(),
+        slot.time,
+        constants.doctorId,
+        constants.doctorName,
+        false,
+        slot.cost
+    );
+    this.slots.push(newSlot);
+    return newSlot
   }
 
   public findById(id: string): Slot {
