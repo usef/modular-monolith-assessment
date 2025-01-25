@@ -12,9 +12,14 @@ export class BookAppointmentUseCase {
 
     execute(createAppointmentDto: CreateAppointmentDTO) {
         const availableSlots: SlotDto[] = this.slotGateway.getAvailableSlots();
-        if (!availableSlots.find(slot => slot.id == createAppointmentDto.slotId)) {
+        let foundSlot = availableSlots.find(slot => slot.id == createAppointmentDto.slotId);
+        if (!foundSlot) {
             throw new Error("Unavailable slot");
         }
+
+        foundSlot.isReserved = true;
+        this.slotGateway.updateSlot(foundSlot);
+
         return this.appointmentRepository.add(createAppointmentDto);
     }
 }
