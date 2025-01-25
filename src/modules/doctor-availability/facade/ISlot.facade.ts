@@ -1,5 +1,5 @@
-import SlotDTO from "../../../shared/dtos/slotDTO";
+import SlotDto from "../../../shared/dtos/slot.dto";
 
 export default interface ISlotFacade {
-  getAvailableSlots(): SlotDTO[];
+  getAvailableSlots(): SlotDto[];
 }

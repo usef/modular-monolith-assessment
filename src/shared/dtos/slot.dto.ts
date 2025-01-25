@@ -1,4 +1,4 @@
-export default interface SlotDTO {
+export default interface SlotDto {
   id: string;
   time: Date;
   doctorId: string;

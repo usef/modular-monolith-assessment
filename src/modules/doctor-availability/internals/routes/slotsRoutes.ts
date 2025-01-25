@@ -1,6 +1,6 @@
 import SlotsController from "../controllers/slotsController";
 import express from "express";
-import slotsValidator from "../../../../shared/middlewares/slotsValidator";
+import slotsValidator from "../../../../shared/middlewares/slots.validator";
 
 const router = express.Router();
 

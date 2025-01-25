@@ -1,5 +1,5 @@
 import { dependencyContainer } from "../../../../shared/dependencies/dependencyContainer";
-import SlotDTO from "../../../../shared/dtos/slotDTO";
+import SlotDto from "../../../../shared/dtos/slot.dto";
 import createSlotDTO from "../dtos/createSlotDTO";
 import SlotRepository from "../repositories/slotRepository";
 
@@ -7,16 +7,16 @@ class SlotsService {
   private slotRepository: SlotRepository =
     dependencyContainer.getDependency("SlotRepository");
 
-  listAllSlots(): SlotDTO[] {
+  listAllSlots(): SlotDto[] {
     return this.slotRepository.getAll();
   }
-  createSlot(slot: createSlotDTO): SlotDTO {
+  createSlot(slot: createSlotDTO): SlotDto {
     return this.slotRepository.add(slot);
   }
 
-  getAvailableSlots(): SlotDTO[] {
+  getAvailableSlots(): SlotDto[] {
     const allSlots = this.slotRepository.getAll();
-    const availableSlots = allSlots.filter((slot: SlotDTO) => !slot.isReserved);
+    const availableSlots = allSlots.filter((slot: SlotDto) => !slot.isReserved);
 
     return availableSlots;
   }
