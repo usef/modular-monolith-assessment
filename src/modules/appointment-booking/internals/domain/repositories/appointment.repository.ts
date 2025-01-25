@@ -23,4 +23,12 @@ export class AppointmentRepository implements IAppointmentRepository {
         this.appointments.push(appointment);
         return appointment;
     }
+
+    update(id: string, updatedData: Partial<Appointment>): void {
+        let appointmentFound = this.appointments.filter(a => a.id == id);
+        if (!appointmentFound) {
+            throw new Error("Appointment not found");
+        }
+        this.appointments = this.appointments.map(a => a.id == id ? {...a, ...updatedData} as Appointment : a);
+    }
 }

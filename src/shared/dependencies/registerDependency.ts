@@ -28,6 +28,12 @@ import {IAppointmentFacade} from "../../modules/appointment-booking/facades/appo
 import {AppointmentFacade} from "../../modules/appointment-booking/facades/appointment.facade";
 import {IAppointmentGateway} from "../../modules/appointment-management/gateways/appointment-gateway.interface";
 import {AppointmentGateway} from "../../modules/appointment-management/gateways/appointment.gateway";
+import {
+    CompleteAppointmentUseCase
+} from "../../modules/appointment-booking/internals/application/use-cases/complete-appointment.usecase";
+import {
+    CancelAppointmentUseCase
+} from "../../modules/appointment-booking/internals/application/use-cases/cancel-appointment.usecase";
 
 export default function instantiateDependency() {
     dependencyContainer.registerDependency<INotificationSender>(
@@ -75,6 +81,9 @@ export default function instantiateDependency() {
         "GetUpcomingAppointmentsUseCase",
         new GetUpcomingAppointmentsUseCase()
     );
+
+    dependencyContainer.registerDependency<CompleteAppointmentUseCase>("CompleteAppointmentUseCase", new CompleteAppointmentUseCase());
+    dependencyContainer.registerDependency<CancelAppointmentUseCase>("CancelAppointmentUseCase", new CancelAppointmentUseCase());
 
     dependencyContainer.registerDependency<IAppointmentFacade>("AppointmentFacade", new AppointmentFacade());
     dependencyContainer.registerDependency<IAppointmentGateway>("AppointmentGateway", new AppointmentGateway())

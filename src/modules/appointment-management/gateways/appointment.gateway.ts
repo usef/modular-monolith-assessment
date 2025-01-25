@@ -9,4 +9,12 @@ export class AppointmentGateway implements IAppointmentGateway {
     getUpcomingAppointments(): Appointment[] {
         return this.appointmentFacade.getUpcomingAppointments();
     }
+
+    cancelAppointment(id: string): void {
+        return this.appointmentFacade.cancelAppointment(id);
+    }
+
+    completeAppointment(id: string): void {
+        return this.appointmentFacade.completeAppointment(id);
+    }
 }

@@ -5,4 +5,6 @@ export interface IAppointmentRepository {
     getAll(): Appointment[];
 
     add(appointment: CreateAppointmentDTO): Appointment;
+
+    update(id: string, updatedData: Partial<Appointment>): void;
 }

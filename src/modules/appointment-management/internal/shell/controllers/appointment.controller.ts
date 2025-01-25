@@ -10,4 +10,16 @@ export class AppointmentController {
         const upcomingAppointments = appointmentGateway.getUpcomingAppointments();
         res.json(new VoisResponse("success", upcomingAppointments));
     }
+
+    public static cancelAppointment(req: Request, res: Response) {
+        const id = req.params.id;
+        appointmentGateway.cancelAppointment(id);
+        res.json(new VoisResponse("success", {}));
+    }
+
+    public static completeAppointment(req: Request, res: Response) {
+        const id = req.params.id;
+        appointmentGateway.completeAppointment(id);
+        res.json(new VoisResponse("success", {}));
+    }
 }
