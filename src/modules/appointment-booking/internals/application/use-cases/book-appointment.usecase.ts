@@ -4,6 +4,8 @@ import ISlotGateway from "../../../gateway/ISlot.gateway";
 import CreateAppointmentDTO from "../dtos/create-appointment.dto";
 import {IAppointmentRepository} from "../../domain/repositories/IAppointmentRepository.interface";
 import EventEmitter from "node:events";
+import {AppointmentConfirmedEvent} from "../events/appointment-confirmed.event";
+import Appointment from "../../domain/models/appointment.model";
 
 export class BookAppointmentUseCase {
     private slotGateway: ISlotGateway =
@@ -22,8 +24,18 @@ export class BookAppointmentUseCase {
         foundSlot.isReserved = true;
         this.slotGateway.updateSlot(foundSlot);
 
-        const appointment = this.appointmentRepository.add(createAppointmentDto);
-        this.eventEmitter.emit("AppointmentConfirmed", appointment);
+        const appointment: Appointment = this.appointmentRepository.add(createAppointmentDto);
+        const appointmentConfirmedEvent = new AppointmentConfirmedEvent(
+            appointment.id,
+            createAppointmentDto.slotId,
+            createAppointmentDto.patientId,
+            createAppointmentDto.patientName,
+            foundSlot.doctorId,
+            foundSlot.doctorName,
+            createAppointmentDto.reservedAt
+        );
+        
+        this.eventEmitter.emit("AppointmentConfirmed", appointmentConfirmedEvent);
         return appointment;
     }
 }
