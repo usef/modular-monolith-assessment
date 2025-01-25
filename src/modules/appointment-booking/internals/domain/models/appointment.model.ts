@@ -1,15 +1,15 @@
+type AppointmentStatus = 'completed' | 'canceled' | 'pending';
 export default class Appointment {
     constructor(
         private _id: string,
         private _slotId: string,
         private _patientId: string,
         private _patientName: string,
-        // TODO: fix reservedAt to take time from => to
         private _reservedAt: Date,
-        // TODO: Add status of completed/canceled
+        private _status: AppointmentStatus,
     ) {
     }
-    
+
     get id(): string {
         return this._id;
     }
@@ -28,5 +28,9 @@ export default class Appointment {
 
     get reservedAt(): Date {
         return this._reservedAt;
+    }
+
+    get status(): AppointmentStatus {
+        return this._status;
     }
 }

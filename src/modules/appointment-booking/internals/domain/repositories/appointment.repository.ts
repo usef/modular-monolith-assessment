@@ -16,9 +16,10 @@ export class AppointmentRepository implements IAppointmentRepository {
             appointmentDto.slotId,
             appointmentDto.patientId,
             appointmentDto.patientName,
-            appointmentDto.reservedAt
+            new Date(Date.now()),
+            'pending'
         );
-        
+
         this.appointments.push(appointment);
         return appointment;
     }

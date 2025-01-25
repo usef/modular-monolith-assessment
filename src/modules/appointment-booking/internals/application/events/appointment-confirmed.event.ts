@@ -6,7 +6,8 @@ export class AppointmentConfirmedEvent {
         private patientName: string,
         private doctorId: string,
         private doctorName: string,
-        private reservedAt: Date
+        private reservedAt: Date,
+        private status: string
     ) {
     }
 }

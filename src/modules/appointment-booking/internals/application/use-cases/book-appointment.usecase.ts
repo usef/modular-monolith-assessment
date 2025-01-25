@@ -32,9 +32,10 @@ export class BookAppointmentUseCase {
             createAppointmentDto.patientName,
             foundSlot.doctorId,
             foundSlot.doctorName,
-            createAppointmentDto.reservedAt
+            appointment.reservedAt,
+            appointment.status
         );
-        
+
         this.eventEmitter.emit("AppointmentConfirmed", appointmentConfirmedEvent);
         return appointment;
     }
