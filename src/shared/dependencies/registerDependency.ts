@@ -1,6 +1,6 @@
 import {dependencyContainer} from "./dependencyContainer";
-import SlotRepository from "../../modules/doctor-availability/internals/repositories/slotRepository";
-import SlotsService from "../../modules/doctor-availability/internals/services/slotsService";
+import SlotRepository from "../../modules/doctor-availability/internals/repositories/slot.repository";
+import SlotsService from "../../modules/doctor-availability/internals/services/slots.service";
 import SlotFacade from "../../modules/doctor-availability/facade/slot.facade";
 import SlotGateway from "../../modules/appointment-booking/gateway/slot.gateway";
 import {
@@ -11,7 +11,7 @@ import {
 } from "../../modules/appointment-booking/internals/application/use-cases/list-available-slots.usecase";
 import {
     IAppointmentRepository
-} from "../../modules/appointment-booking/internals/domain/repositories/IAppointmentRepository.interface";
+} from "../../modules/appointment-booking/internals/domain/repositories/appointment-repository.interface";
 import {
     AppointmentRepository
 } from "../../modules/appointment-booking/internals/domain/repositories/appointment.repository";
@@ -21,6 +21,13 @@ import EventEmitter from "node:events";
 import {EventBus} from "../event-bus";
 import {AppointmentBookedHandler} from "../../modules/appointment-confirmation/appointment-booked.handler";
 import {IEventHandler} from "../interfaces/event-handler.interface";
+import {
+    GetUpcomingAppointmentsUseCase
+} from "../../modules/appointment-booking/internals/application/use-cases/get-upcoming-appointments.usecase";
+import {IAppointmentFacade} from "../../modules/appointment-booking/facades/appointment-facade.interface";
+import {AppointmentFacade} from "../../modules/appointment-booking/facades/appointment.facade";
+import {IAppointmentGateway} from "../../modules/appointment-management/gateways/appointment-gateway.interface";
+import {AppointmentGateway} from "../../modules/appointment-management/gateways/appointment.gateway";
 
 export default function instantiateDependency() {
     dependencyContainer.registerDependency<INotificationSender>(
@@ -51,6 +58,7 @@ export default function instantiateDependency() {
         "SlotFacade",
         new SlotFacade()
     );
+
     dependencyContainer.registerDependency<SlotGateway>(
         "SlotGateway",
         new SlotGateway()
@@ -63,5 +71,12 @@ export default function instantiateDependency() {
         new BookAppointmentUseCase()
     );
 
+    dependencyContainer.registerDependency<GetUpcomingAppointmentsUseCase>(
+        "GetUpcomingAppointmentsUseCase",
+        new GetUpcomingAppointmentsUseCase()
+    );
+
+    dependencyContainer.registerDependency<IAppointmentFacade>("AppointmentFacade", new AppointmentFacade());
+    dependencyContainer.registerDependency<IAppointmentGateway>("AppointmentGateway", new AppointmentGateway())
     dependencyContainer.registerDependency<EventBus>("EventBus", new EventBus());
 }

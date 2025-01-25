@@ -14,4 +14,8 @@ export default class SlotGateway implements ISlotGateway {
     updateSlot(slot: SlotDto): void {
         return this.slotFacade.updateSlot(slot);
     }
+
+    getUpcomingSlots(): SlotDto[] {
+        return this.slotFacade.getUpcomingSlots();
+    }
 }

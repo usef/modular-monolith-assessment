@@ -4,4 +4,6 @@ export default interface ISlotGateway {
     getAvailableSlots(): SlotDto[];
 
     updateSlot(slot: SlotDto): void;
+
+    getUpcomingSlots(): SlotDto[];
 }
