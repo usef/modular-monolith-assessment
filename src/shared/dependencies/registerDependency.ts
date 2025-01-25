@@ -15,21 +15,23 @@ import {
 import {
     AppointmentRepository
 } from "../../modules/appointment-booking/internals/domain/repositories/appointment.repository";
-import {NotificationSender} from "../../modules/appointment-confirmation/notification-sender";
+import {NotificationSender} from "../notification-sender";
 import {INotificationSender} from "../interfaces/notification-sender.interface";
 import EventEmitter from "node:events";
-import {EventBus} from "../../modules/appointment-confirmation/event-bus";
+import {EventBus} from "../event-bus";
+import {AppointmentBookedHandler} from "../../modules/appointment-confirmation/appointment-booked.handler";
+import {IEventHandler} from "../interfaces/event-handler.interface";
 
 export default function instantiateDependency() {
-
-    dependencyContainer.registerDependency<EventEmitter>("EventEmitter", new EventEmitter());
-
-    dependencyContainer.registerDependency<EventBus>("EventBus", new EventBus());
-
     dependencyContainer.registerDependency<INotificationSender>(
         "NotificationSender",
         new NotificationSender()
     );
+
+    dependencyContainer.registerDependency<EventEmitter>("EventEmitter", new EventEmitter());
+
+
+    dependencyContainer.registerDependency<IEventHandler>("AppointmentBookedHandler", new AppointmentBookedHandler());
 
     dependencyContainer.registerDependency<SlotRepository>(
         "SlotRepository",
@@ -60,4 +62,6 @@ export default function instantiateDependency() {
         "BookAppointmentUseCase",
         new BookAppointmentUseCase()
     );
+
+    dependencyContainer.registerDependency<EventBus>("EventBus", new EventBus());
 }
