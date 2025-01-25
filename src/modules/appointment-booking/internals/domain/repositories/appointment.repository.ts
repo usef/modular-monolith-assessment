@@ -1,4 +1,4 @@
-import {IAppointmentRepository} from "./IAppointmentRepository.interface";
+import {IAppointmentRepository} from "./appointment-repository.interface";
 import Appointment from "../models/appointment.model";
 import {v4 as uuid4} from "uuid";
 import CreateAppointmentDTO from "../../application/dtos/create-appointment.dto";

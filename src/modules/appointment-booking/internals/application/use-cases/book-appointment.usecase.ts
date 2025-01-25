@@ -2,7 +2,7 @@ import {dependencyContainer} from "../../../../../shared/dependencies/dependency
 import SlotDto from "../../../../../shared/dtos/slot.dto";
 import ISlotGateway from "../../../gateway/ISlot.gateway";
 import CreateAppointmentDTO from "../dtos/create-appointment.dto";
-import {IAppointmentRepository} from "../../domain/repositories/IAppointmentRepository.interface";
+import {IAppointmentRepository} from "../../domain/repositories/appointment-repository.interface";
 import EventEmitter from "node:events";
 import {AppointmentConfirmedEvent} from "../events/appointment-confirmed.event";
 import Appointment from "../../domain/models/appointment.model";

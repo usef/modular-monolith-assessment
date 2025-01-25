@@ -1,4 +1,4 @@
-import Slot from "../models/slotModel";
+import Slot from "../models/slot.model";
 import createSlotDTO from "../dtos/createSlotDTO";
 import {v4 as uuid4} from "uuid";
 import constants from "../../../../shared/constants/constants";
