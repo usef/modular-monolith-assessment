@@ -9,13 +9,15 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
-    "@types/node": "^22.10.7"
+    "@types/node": "^22.10.7",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2"
   },
   "name": "modular-monolith-assessment",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "npx ts-node src/server.ts "
+    "start": "npx nodemon src/server.ts "
   },
   "author": "",
   "license": "ISC",
