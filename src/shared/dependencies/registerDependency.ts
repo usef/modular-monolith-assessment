@@ -15,8 +15,22 @@ import {
 import {
     AppointmentRepository
 } from "../../modules/appointment-booking/internals/domain/repositories/appointment.repository";
+import {NotificationSender} from "../../modules/appointment-confirmation/notification-sender";
+import {INotificationSender} from "../interfaces/notification-sender.interface";
+import EventEmitter from "node:events";
+import {EventBus} from "../../modules/appointment-confirmation/event-bus";
 
 export default function instantiateDependency() {
+
+    dependencyContainer.registerDependency<EventEmitter>("EventEmitter", new EventEmitter());
+
+    dependencyContainer.registerDependency<EventBus>("EventBus", new EventBus());
+
+    dependencyContainer.registerDependency<INotificationSender>(
+        "NotificationSender",
+        new NotificationSender()
+    );
+
     dependencyContainer.registerDependency<SlotRepository>(
         "SlotRepository",
         new SlotRepository()
@@ -26,7 +40,7 @@ export default function instantiateDependency() {
         "AppointmentRepository",
         new AppointmentRepository()
     );
-    
+
     dependencyContainer.registerDependency<SlotsService>(
         "SlotsService",
         new SlotsService()

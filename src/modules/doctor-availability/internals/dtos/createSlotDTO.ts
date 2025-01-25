@@ -1,4 +1,5 @@
 export default interface createSlotDTO {
-  time: Date;
-  cost: number;
+    // TODO: fix time
+    time: Date;
+    cost: number;
 }

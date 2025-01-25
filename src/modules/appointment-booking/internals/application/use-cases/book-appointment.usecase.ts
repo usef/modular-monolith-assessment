@@ -3,12 +3,14 @@ import SlotDto from "../../../../../shared/dtos/slot.dto";
 import ISlotGateway from "../../../gateway/ISlot.gateway";
 import CreateAppointmentDTO from "../dtos/create-appointment.dto";
 import {IAppointmentRepository} from "../../domain/repositories/IAppointmentRepository.interface";
+import EventEmitter from "node:events";
 
 export class BookAppointmentUseCase {
     private slotGateway: ISlotGateway =
         dependencyContainer.getDependency("SlotGateway");
     private appointmentRepository: IAppointmentRepository =
         dependencyContainer.getDependency("AppointmentRepository");
+    private eventEmitter: EventEmitter = dependencyContainer.getDependency("EventEmitter");
 
     execute(createAppointmentDto: CreateAppointmentDTO) {
         const availableSlots: SlotDto[] = this.slotGateway.getAvailableSlots();
@@ -20,6 +22,8 @@ export class BookAppointmentUseCase {
         foundSlot.isReserved = true;
         this.slotGateway.updateSlot(foundSlot);
 
-        return this.appointmentRepository.add(createAppointmentDto);
+        const appointment = this.appointmentRepository.add(createAppointmentDto);
+        this.eventEmitter.emit("AppointmentConfirmed", appointment);
+        return appointment;
     }
 }
