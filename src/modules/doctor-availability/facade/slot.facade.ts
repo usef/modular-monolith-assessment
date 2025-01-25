@@ -3,11 +3,9 @@ import SlotDTO from "../../../shared/dtos/slotDTO";
 import SlotsService from "../internals/services/slotsService";
 import ISlotFacade from "./ISlot.facade";
 
-const slotsService: SlotsService =
-  dependencyContainer.getDependency("SlotsService");
-
 export default class SlotFacade implements ISlotFacade {
+  private slotsService: SlotsService = dependencyContainer.getDependency("SlotsService");
   getAvailableSlots(): SlotDTO[] {
-    return slotsService.getAvailableSlots();
+    return this.slotsService.getAvailableSlots();
   }
 }
